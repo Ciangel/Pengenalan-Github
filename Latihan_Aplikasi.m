@@ -270,13 +270,29 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+proses = readfis('Mamdani_matlab');
+hasil = evalfis([handles.LusPan handles.Produktivitas],proses);
+set(handles.edit7,'string',hasil);
 
+if hasil <= 150 {
+    msgbox('sedikit');
+    }
+elseif hasil >= 300 && hasil <= 600 {
+        msgbox('banyak');
+       }
+elseif hasil > 150 && hasil < 300 {
+        msgbox('sulit ditentukan (sedikit atau  banyak)');
+        }
+end
 
 
 function edit8_Callback(hObject, eventdata, handles)
 % hObject    handle to edit8 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+LusPan = str2num(get(hObject,'string'));
+handles.LusPan=LusPan;
+guidata(hObject, handles);
 
 % Hints: get(hObject,'String') returns contents of edit8 as text
 %        str2double(get(hObject,'String')) returns contents of edit8 as a double
@@ -314,7 +330,9 @@ function edit9_Callback(hObject, eventdata, handles)
 % hObject    handle to edit9 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+Produktivitas = str2num(get(hObject,'string'));
+handles.Produktivitas=Produktivitas;
+guidata(hObject, handles);
 % Hints: get(hObject,'String') returns contents of edit9 as text
 %        str2double(get(hObject,'String')) returns contents of edit9 as a double
 
