@@ -1,0 +1,39 @@
+[System]
+Name='Mamdani_matlab'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Luas_Panen'
+Range=[0 200]
+NumMFs=2
+MF1='Sedikit':'trapmf',[0 0 50 200]
+MF2='Banyak':'trapmf',[0 130 200 250]
+
+[Input2]
+Name='Produktivitas'
+Range=[0 80]
+NumMFs=2
+MF1='Rendah':'trapmf',[0 0 20 80]
+MF2='Tinggi':'trapmf',[0 55 80 90]
+
+[Output1]
+Name='Produksi'
+Range=[0 600]
+NumMFs=2
+MF1='Sedikit':'trapmf',[0 0 150 600]
+MF2='Banyak':'trapmf',[0 450 600 700]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
